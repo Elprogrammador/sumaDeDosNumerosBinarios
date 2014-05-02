@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Sumador de dos Números Binarios</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        function calcularBinario() {
+            var x = document.getElementById("binary1").value;
+            var y = document.getElementById("binary2").value;
+            if ((/[^0-1]/g.test(x)) || x == "") {
+                document.getElementById("error1").innerHTML="Número binario incorrecto, introduzca un valor binario correcto compuesto de 1 y 0. Ejemplo: 1101010";
+                document.getElementById("binary1").value = "";
+                return 0;
+            }else if ((/[^0-1]/g.test(y)) || y == "") {
+                document.getElementById("error2").innerHTML="Número binario incorrecto, introduzca un valor binario correcto compuesto de 1 y 0. Ejemplo: 1101010";
+                document.getElementById("binary2").value = "";
+                return 0;
+            }
+            else{
+                document.getElementById("error1").innerHTML="";
+                document.getElementById("error2").innerHTML="";
+                var outputValue=0;
+                for(i = x.length-1; i >= 0; i -= 1) {
+                        outputValue += eval(x.charAt(i)) * Math.pow(2, x.length-i-1);
+                }
+                var b1 = parseInt(outputValue);
+                outputValue=0;
+                for(i = y.length-1; i >= 0; i -= 1) {
+                        outputValue += eval(y.charAt(i)) * Math.pow(2, y.length-i-1);
+                }
+                var b2 = parseInt(outputValue);
+                var res=b1+b2;
+                document.getElementById("result1").value= res.toString(2);
+                document.getElementById("result2").value= res;
+            }
+    }
+    </script>
+    </head>
+<body>
+    <center>
+        <h1>Sumador de Dos Números Binarios</h1>
+        <label id="input-type">Ingrese el Primer Número binario:</label><input type="text" id="binary1"> <label id="unit"></label><label id="error1" class="error"></label><br><br>
+        <label id="input-type">Ingrese el Segundo Número binario:</label><input type="text" id="binary2"> <label id="unit"></label><label id="error2" class="error"></label><br><br>
+        <input type="button" value="Presionar para Calcular su Resultado" id="button" onclick="calcularBinario()"><br><br>
+        <label id="resultadoDeConversion">Su Resultado es:</label><input type="text" disabled="disabled" class="result" id="result1" /><label id="unit"></label><br><br>
+        <a href="index.html"><h1>Clic Aquí para Limpiar o Borrar Campos.</h1></a><br><br>
+    </center>
+
+    <script type="text/javascript">
+    for(i=1;i<=20;i++){
+        try{
+            var re=document.getElementById("result"+i);
+            re.disabled=false;
+        }
+        catch(e){
+            break;
+        }
+    }
+    </script>
+</html>
